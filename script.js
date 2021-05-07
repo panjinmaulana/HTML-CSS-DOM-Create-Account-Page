@@ -25,7 +25,6 @@ form.addEventListener("submit", (e) => {
 
 let databaseCreate = [];
 let databaseLogin = [];
-
 function checkInputs() {
   // trim to remove the whitespaces
   let usernameValue = username.value.trim();
@@ -99,41 +98,41 @@ function checkInputs() {
     databaseLogin.push(passwordValue);
     checkFalse[0].style.visibility = "visible";
     small[0].style.visibility = "visible";
-  }
-  // console.log(databaseCreate, databaseLogin);
-  if (databaseCreate[0] === databaseLogin[0]) {
-    checkFalse[0].style.visibility = "hidden";
-    small[0].style.visibility = "hidden";
-    if (databaseCreate[1] === databaseLogin[1]) {
-      if (databaseCreate[2] === databaseLogin[2]) {
-        container.style.visibility = "hidden";
-        const h1 = document.createElement("h1");
-        const node = document.createTextNode(
-          `Congratulations ${usernameValue} have successfully logged in!`
-        );
-        h1.appendChild(node);
-        registered.appendChild(h1);
-        registered.style.visibility = "visible";
+    console.log(databaseCreate, databaseLogin);
+    if (databaseCreate[0] === databaseLogin[0]) {
+      checkFalse[0].style.visibility = "hidden";
+      small[0].style.visibility = "hidden";
+      if (databaseCreate[1] === databaseLogin[1]) {
+        if (databaseCreate[2] === databaseLogin[2]) {
+          container.style.visibility = "hidden";
+          const h1 = document.createElement("h1");
+          const node = document.createTextNode(
+            `Congratulations ${usernameValue} have successfully logged in!`
+          );
+          h1.appendChild(node);
+          registered.appendChild(h1);
+          registered.style.visibility = "visible";
+        } else {
+          databaseLogin = [];
+          username.value = "";
+          email.value = "";
+          password.value = "";
+          setErrorFor(password, "Passwords does not match");
+        }
       } else {
         databaseLogin = [];
         username.value = "";
         email.value = "";
         password.value = "";
-        setErrorFor(password, "Passwords does not match");
+        setErrorFor(email, "Email does not match");
       }
     } else {
       databaseLogin = [];
       username.value = "";
       email.value = "";
       password.value = "";
-      setErrorFor(email, "Email does not match");
+      setErrorFor(username, "Username does not match");
     }
-  } else {
-    databaseLogin = [];
-    username.value = "";
-    email.value = "";
-    password.value = "";
-    setErrorFor(username, "Username does not match");
   }
 }
 
